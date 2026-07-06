@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap");
+
 body {
     background-color: #fff7fa;
     color: #3b2730;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Chau Philomene One", Arial, Helvetica, sans-serif;
+    letter-spacing: 0;
 }
 
 .navbar {
@@ -60,6 +63,7 @@ body {
     border-color: #efbfd3;
     color: #3b2730;
     background-color: #fffafd;
+    font-family: "Chau Philomene One", Arial, Helvetica, sans-serif;
 }
 
 .form-control:focus {
@@ -76,6 +80,11 @@ body {
     justify-content: flex-end;
     gap: 12px;
     margin-top: 24px;
+}
+
+.btn {
+    font-family: "Chau Philomene One", Arial, Helvetica, sans-serif;
+    letter-spacing: 0;
 }
 
 .btn-primary {
@@ -115,6 +124,14 @@ body {
     border-color: #f3c6d8;
 }
 
+.table th,
+.table td,
+#tablaUsuarios th,
+#tablaUsuarios td {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     background-color: #fff1f6;
     color: #3b2730;
@@ -128,6 +145,12 @@ table.dataTable thead th {
     background-color: #f7cfe0;
     color: #642342;
     border-color: #efbfd3;
+    text-align: center;
+}
+
+table.dataTable tbody td {
+    text-align: center;
+    vertical-align: middle;
 }
 
 table.dataTable tbody tr:hover {
@@ -148,6 +171,7 @@ table.dataTable tbody tr:hover {
     border-radius: 6px;
     background-color: #fffafd;
     color: #3b2730;
+    font-family: "Chau Philomene One", Arial, Helvetica, sans-serif;
 }
 
 .page-link {
