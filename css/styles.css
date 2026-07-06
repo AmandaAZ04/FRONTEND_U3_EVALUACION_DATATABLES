@@ -1,10 +1,30 @@
 body {
-    background-color: #f5f7fb;
-    color: #212529;
+    background-color: #fff7fa;
+    color: #3b2730;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar {
     margin-bottom: 32px;
+    background-color: #d96c9f !important;
+    box-shadow: 0 4px 14px rgba(217, 108, 159, 0.22);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff3f8;
+    font-weight: 600;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 6px;
 }
 
 .container-principal {
@@ -15,15 +35,16 @@ body {
 
 .titulo-pagina {
     margin-bottom: 24px;
+    color: #8f2f5f;
     font-weight: 700;
 }
 
 .seccion-contenido {
     background-color: #ffffff;
-    border: 1px solid #dee2e6;
+    border: 1px solid #f3c6d8;
     border-radius: 8px;
     padding: 24px;
-    box-shadow: 0 4px 14px rgba(33, 37, 41, 0.06);
+    box-shadow: 0 8px 22px rgba(143, 47, 95, 0.09);
 }
 
 .formulario-usuario {
@@ -31,7 +52,23 @@ body {
 }
 
 .form-label {
+    color: #7d2b54;
     font-weight: 600;
+}
+
+.form-control {
+    border-color: #efbfd3;
+    color: #3b2730;
+    background-color: #fffafd;
+}
+
+.form-control:focus {
+    border-color: #d96c9f;
+    box-shadow: 0 0 0 0.2rem rgba(217, 108, 159, 0.18);
+}
+
+.form-control::placeholder {
+    color: #b9889d;
 }
 
 .botones-formulario {
@@ -41,30 +78,133 @@ body {
     margin-top: 24px;
 }
 
+.btn-primary {
+    background-color: #d96c9f;
+    border-color: #d96c9f;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #c6538a;
+    border-color: #c6538a;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: #f6d7e4;
+    border-color: #f0bed3;
+    color: #7d2b54;
+    font-weight: 600;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #efbfd3;
+    border-color: #e7a9c2;
+    color: #642342;
+}
+
 #tablaUsuarios {
     width: 100%;
 }
 
-.dataTables_wrapper {
-    margin-top: 16px;
+.table {
+    color: #3b2730;
+    border-color: #f3c6d8;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: #fff1f6;
+    color: #3b2730;
+}
+
+.table-bordered > :not(caption) > * {
+    border-color: #f3c6d8;
 }
 
 table.dataTable thead th {
-    background-color: #032e59;
-    color: #212529;
+    background-color: #f7cfe0;
+    color: #642342;
+    border-color: #efbfd3;
 }
 
 table.dataTable tbody tr:hover {
-    background-color: #ff54f6;
+    background-color: #ffe8f1;
+}
+
+.dataTables_wrapper,
+.dt-container {
+    margin-top: 16px;
+    color: #3b2730;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select,
+.dt-container .dt-search input,
+.dt-container .dt-length select {
+    border: 1px solid #efbfd3;
+    border-radius: 6px;
+    background-color: #fffafd;
+    color: #3b2730;
+}
+
+.page-link {
+    color: #b43f78;
+    border-color: #f3c6d8;
+}
+
+.page-link:hover {
+    color: #8f2f5f;
+    background-color: #fff1f6;
+    border-color: #efbfd3;
+}
+
+.active > .page-link,
+.page-link.active {
+    background-color: #d96c9f;
+    border-color: #d96c9f;
+    color: #ffffff;
 }
 
 .invalid-feedback {
     font-size: 0.875rem;
+    color: #b4235a;
+}
+
+.form-control.is-invalid {
+    border-color: #d6336c;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(214, 51, 108, 0.18);
+}
+
+.form-control.is-valid {
+    border-color: #d96c9f;
+    background-image: none;
+}
+
+.form-control.is-valid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(217, 108, 159, 0.18);
+}
+
+a {
+    color: #b43f78;
+}
+
+a:hover {
+    color: #8f2f5f;
 }
 
 @media (max-width: 768px) {
     .seccion-contenido {
         padding: 16px;
+    }
+
+    .titulo-pagina {
+        font-size: 1.6rem;
     }
 
     .botones-formulario {
@@ -73,5 +213,11 @@ table.dataTable tbody tr:hover {
 
     .botones-formulario .btn {
         width: 100%;
+    }
+
+    .d-flex.justify-content-between {
+        align-items: flex-start !important;
+        flex-direction: column;
+        gap: 12px;
     }
 }
