@@ -1,8 +1,11 @@
 @font-face {
     font-family: "Sailors";
     src: url("../assets/fonts/Sailors.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
+}
+
+@font-face {
+    font-family: "Alaska";
+    src: url("../assets/fonts/Alaska.otf") format("opentype");
 }
 
 * {
@@ -11,6 +14,8 @@
 }
 
 body {
+    min-height: 100vh;
+    padding-bottom: 72px;
     background-color: #fff7fa;
     color: #3b2730;
 }
@@ -19,6 +24,11 @@ body {
     margin-bottom: 32px;
     background-color: #d96c9f !important;
     box-shadow: 0 4px 14px rgba(217, 108, 159, 0.22);
+}
+
+.navbar-brand,
+.titulo-pagina {
+    font-family: "Alaska", "Sailors", Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand {
@@ -253,7 +263,64 @@ a:hover {
     color: #8f2f5f;
 }
 
+.contact-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #d96c9f;
+    box-shadow: 0 -4px 14px rgba(217, 108, 159, 0.22);
+}
+
+.contact-footer-content {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    gap: 12px;
+}
+
+.contact-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.contact-arrow {
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.contact-toggle[aria-expanded="true"] .contact-arrow {
+    transform: rotate(180deg);
+}
+
+.contact-panel {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    max-width: 900px;
+    gap: 18px;
+    padding: 8px 0;
+    color: #fff3f8;
+    white-space: nowrap;
+}
+
+.contact-panel span:first-child {
+    color: #ffffff;
+}
+
 @media (max-width: 768px) {
+    body {
+        padding-bottom: 112px;
+    }
+
     .seccion-contenido {
         padding: 16px;
     }
@@ -274,5 +341,18 @@ a:hover {
         align-items: flex-start !important;
         flex-direction: column;
         gap: 12px;
+    }
+
+    .contact-footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .contact-panel {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        white-space: normal;
     }
 }
