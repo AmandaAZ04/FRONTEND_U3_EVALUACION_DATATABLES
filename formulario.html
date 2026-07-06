@@ -50,14 +50,16 @@
 
                 <div class="mb-3">
                     <label for="fechaIngreso" class="form-label">Fecha Ingreso *</label>
-                    <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso">
+                    <div class="date-picker-wrapper" id="contenedorFechaIngreso">
+                        <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso">
+                        <span class="date-placeholder">dd-mm-aaaa</span>
+                    </div>
                     <div class="invalid-feedback">Seleccione una fecha de ingreso valida.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email *</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                        placeholder="usuario@gmail.com">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="usuario@gmail.com">
                     <div class="invalid-feedback">Ingrese un correo valido de Gmail, Hotmail, Yahoo, Outlook, iCloud, Proton o Inacapmail.</div>
                 </div>
 
@@ -68,8 +70,7 @@
                             <option value="https://" selected>https://</option>
                             <option value="http://">http://</option>
                         </select>
-                        <input type="text" class="form-control" id="sitioWeb" name="sitioWeb"
-                            placeholder="www.ejemplo.cl">
+                        <input type="text" class="form-control" id="sitioWeb" name="sitioWeb" placeholder="www.ejemplo.cl">
                         <div class="invalid-feedback">Ingrese un sitio web valido, por ejemplo www.ejemplo.cl.</div>
                     </div>
                 </div>

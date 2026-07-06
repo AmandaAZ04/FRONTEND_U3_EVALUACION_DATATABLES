@@ -5,7 +5,32 @@ $(document).ready(function () {
     $("#nombre, #usuario, #fechaIngreso, #email, #sitioWeb").on("input change", function () {
         validarCampo($(this));
     });
+
+    $("#fechaIngreso").on("input change", actualizarEstadoFecha);
+    $("#contenedorFechaIngreso, #fechaIngreso").on("click", abrirCalendarioFecha);
+
+    actualizarEstadoFecha();
 });
+
+function abrirCalendarioFecha() {
+    const campoFecha = document.getElementById("fechaIngreso");
+
+    campoFecha.focus();
+
+    if (typeof campoFecha.showPicker === "function") {
+        campoFecha.showPicker();
+    }
+}
+
+function actualizarEstadoFecha() {
+    const campoFecha = $("#fechaIngreso");
+
+    if (campoFecha.val() === "") {
+        campoFecha.removeClass("has-value");
+    } else {
+        campoFecha.addClass("has-value");
+    }
+}
 
 function enviarFormulario(event) {
     event.preventDefault();
@@ -17,14 +42,12 @@ function enviarFormulario(event) {
         return;
     }
 
-    const sitioWeb = obtenerSitioWebCompleto();
-
     const nuevoUsuario = {
         nombre: $("#nombre").val().trim(),
         usuario: $("#usuario").val().trim(),
         fechaIngreso: $("#fechaIngreso").val(),
         email: $("#email").val().trim(),
-        sitioWeb: sitioWeb
+        sitioWeb: obtenerSitioWebCompleto()
     };
 
     console.log("Usuario registrado:", nuevoUsuario);
@@ -48,9 +71,7 @@ function validarFormulario() {
     let formularioValido = true;
 
     campos.forEach(function (campo) {
-        const campoValido = validarCampo(campo);
-
-        if (!campoValido) {
+        if (!validarCampo(campo)) {
             formularioValido = false;
         }
     });
@@ -73,6 +94,7 @@ function validarCampo(campo) {
 
     if (id === "fechaIngreso") {
         valido = validarFecha(valor);
+        actualizarEstadoFecha();
     }
 
     if (id === "email") {
@@ -142,12 +164,7 @@ function contienePalabrasProhibidas(valor) {
         "retrasado",
         "retrasada",
         "mongolico",
-        "mongolica",
-        "negro",
-        "negra",
-        "indio",
-        "india",
-        "gay"
+        "mongolica"
     ];
 
     return palabrasProhibidas.some(function (palabra) {
@@ -177,7 +194,6 @@ function validarFecha(valor) {
     }
 
     const fecha = new Date(valor + "T00:00:00");
-
     return !isNaN(fecha.getTime());
 }
 
@@ -237,6 +253,8 @@ function limpiarFormulario() {
     $("#formUsuario")[0].reset();
 
     $("#nombre, #usuario, #fechaIngreso, #email, #sitioWeb").removeClass(
-        "is-valid is-invalid"
+        "is-valid is-invalid has-value"
     );
+
+    actualizarEstadoFecha();
 }
