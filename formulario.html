@@ -39,34 +39,39 @@
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre *</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
-                    <div class="invalid-feedback">El nombre es obligatorio.</div>
+                    <div class="invalid-feedback">El nombre es obligatorio y solo puede contener letras.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuario *</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el usuario">
-                    <div class="invalid-feedback">El usuario es obligatorio.</div>
+                    <div class="invalid-feedback">El usuario es obligatorio y no puede contener palabras ofensivas.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="fechaIngreso" class="form-label">Fecha Ingreso *</label>
-                    <input type="text" class="form-control" id="fechaIngreso" name="fechaIngreso"
-                        placeholder="dd/mm/yyyy">
-                    <div class="invalid-feedback">Ingrese una fecha valida con formato dd/mm/yyyy.</div>
+                    <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso">
+                    <div class="invalid-feedback">Seleccione una fecha de ingreso valida.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email *</label>
                     <input type="email" class="form-control" id="email" name="email"
-                        placeholder="usuario@servidor.dom">
-                    <div class="invalid-feedback">Ingrese un correo valido.</div>
+                        placeholder="usuario@gmail.com">
+                    <div class="invalid-feedback">Ingrese un correo valido de Gmail, Hotmail, Yahoo, Outlook, iCloud, Proton o Inacapmail.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="sitioWeb" class="form-label">Sitio Web</label>
-                    <input type="url" class="form-control" id="sitioWeb" name="sitioWeb"
-                        placeholder="https://www.ejemplo.cl">
-                    <div class="invalid-feedback">Ingrese una URL valida, por ejemplo https://www.ejemplo.cl.</div>
+                    <div class="input-group">
+                        <select class="form-select" id="protocoloSitio" name="protocoloSitio" style="max-width: 120px;">
+                            <option value="https://" selected>https://</option>
+                            <option value="http://">http://</option>
+                        </select>
+                        <input type="text" class="form-control" id="sitioWeb" name="sitioWeb"
+                            placeholder="www.ejemplo.cl">
+                        <div class="invalid-feedback">Ingrese un sitio web valido, por ejemplo www.ejemplo.cl.</div>
+                    </div>
                 </div>
 
                 <div class="botones-formulario">

@@ -17,12 +17,14 @@ function enviarFormulario(event) {
         return;
     }
 
+    const sitioWeb = obtenerSitioWebCompleto();
+
     const nuevoUsuario = {
         nombre: $("#nombre").val().trim(),
         usuario: $("#usuario").val().trim(),
-        fechaIngreso: $("#fechaIngreso").val().trim(),
+        fechaIngreso: $("#fechaIngreso").val(),
         email: $("#email").val().trim(),
-        sitioWeb: $("#sitioWeb").val().trim()
+        sitioWeb: sitioWeb
     };
 
     console.log("Usuario registrado:", nuevoUsuario);
@@ -62,11 +64,11 @@ function validarCampo(campo) {
     let valido = true;
 
     if (id === "nombre") {
-        valido = valor !== "";
+        valido = validarNombre(valor);
     }
 
     if (id === "usuario") {
-        valido = valor !== "";
+        valido = validarUsuario(valor);
     }
 
     if (id === "fechaIngreso") {
@@ -78,7 +80,7 @@ function validarCampo(campo) {
     }
 
     if (id === "sitioWeb") {
-        valido = valor === "" || validarUrl(valor);
+        valido = valor === "" || validarSitioWeb(valor);
     }
 
     aplicarEstadoCampo(campo, valido);
@@ -96,49 +98,139 @@ function aplicarEstadoCampo(campo, valido) {
     }
 }
 
+function validarNombre(valor) {
+    if (valor === "") {
+        return false;
+    }
+
+    const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    return regexNombre.test(valor);
+}
+
+function validarUsuario(valor) {
+    if (valor === "") {
+        return false;
+    }
+
+    return !contienePalabrasProhibidas(valor);
+}
+
+function contienePalabrasProhibidas(valor) {
+    const usuarioNormalizado = normalizarTexto(valor);
+
+    const palabrasProhibidas = [
+        "pene",
+        "pico",
+        "pichula",
+        "tula",
+        "vagina",
+        "sexo",
+        "mierda",
+        "weon",
+        "hueon",
+        "ctm",
+        "puta",
+        "puto",
+        "maraco",
+        "maraca",
+        "zorra",
+        "perra",
+        "imbecil",
+        "idiota",
+        "estupido",
+        "estupida",
+        "retrasado",
+        "retrasada",
+        "mongolico",
+        "mongolica",
+        "negro",
+        "negra",
+        "indio",
+        "india",
+        "gay"
+    ];
+
+    return palabrasProhibidas.some(function (palabra) {
+        return usuarioNormalizado.includes(palabra);
+    });
+}
+
+function normalizarTexto(valor) {
+    return valor
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/0/g, "o")
+        .replace(/1/g, "i")
+        .replace(/3/g, "e")
+        .replace(/4/g, "a")
+        .replace(/5/g, "s")
+        .replace(/7/g, "t")
+        .replace(/@/g, "a")
+        .replace(/\$/g, "s")
+        .replace(/[^a-z]/g, "");
+}
+
 function validarFecha(valor) {
     if (valor === "") {
         return false;
     }
 
-    const regexFechaTexto = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    const regexFechaDate = /^\d{4}-\d{2}-\d{2}$/;
+    const fecha = new Date(valor + "T00:00:00");
 
-    if (regexFechaTexto.test(valor)) {
-        const partes = valor.split("/");
-        const dia = parseInt(partes[0], 10);
-        const mes = parseInt(partes[1], 10) - 1;
-        const anio = parseInt(partes[2], 10);
-
-        const fecha = new Date(anio, mes, dia);
-
-        return (
-            fecha.getFullYear() === anio &&
-            fecha.getMonth() === mes &&
-            fecha.getDate() === dia
-        );
-    }
-
-    if (regexFechaDate.test(valor)) {
-        const fecha = new Date(valor);
-        return !isNaN(fecha.getTime());
-    }
-
-    return false;
+    return !isNaN(fecha.getTime());
 }
 
 function validarEmail(valor) {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(valor);
+    if (valor === "") {
+        return false;
+    }
+
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!regexEmail.test(valor)) {
+        return false;
+    }
+
+    const dominio = valor.split("@")[1].toLowerCase();
+
+    const dominiosPermitidos = [
+        "gmail.com",
+        "hotmail.com",
+        "hotmail.cl",
+        "outlook.com",
+        "outlook.cl",
+        "live.com",
+        "yahoo.com",
+        "yahoo.cl",
+        "icloud.com",
+        "proton.me",
+        "protonmail.com",
+        "inacapmail.cl"
+    ];
+
+    return dominiosPermitidos.includes(dominio);
 }
 
-function validarUrl(valor) {
+function validarSitioWeb(valor) {
+    const sitioCompleto = $("#protocoloSitio").val() + valor.trim();
+
     try {
-        new URL(valor);
-        return true;
+        const url = new URL(sitioCompleto);
+        return url.hostname.includes(".") && url.hostname.length >= 4;
     } catch (error) {
         return false;
     }
+}
+
+function obtenerSitioWebCompleto() {
+    const sitio = $("#sitioWeb").val().trim();
+
+    if (sitio === "") {
+        return "";
+    }
+
+    return $("#protocoloSitio").val() + sitio;
 }
 
 function limpiarFormulario() {
