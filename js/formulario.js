@@ -7,7 +7,7 @@ $(document).ready(function () {
     });
 
     $("#fechaIngreso").on("input change", actualizarEstadoFecha);
-    $("#contenedorFechaIngreso, #fechaIngreso").on("click", abrirCalendarioFecha);
+    $("#contenedorFechaIngreso").on("click", abrirCalendarioFecha);
 
     actualizarEstadoFecha();
 });
@@ -35,9 +35,7 @@ function actualizarEstadoFecha() {
 function enviarFormulario(event) {
     event.preventDefault();
 
-    const formularioValido = validarFormulario();
-
-    if (!formularioValido) {
+    if (!validarFormulario()) {
         alert("Revisa los campos marcados antes de enviar.");
         return;
     }
@@ -51,11 +49,9 @@ function enviarFormulario(event) {
     };
 
     console.log("Usuario registrado:", nuevoUsuario);
-
     alert("Datos enviados correctamente.");
 
     limpiarFormulario();
-
     window.location.href = "index.html";
 }
 
@@ -106,7 +102,6 @@ function validarCampo(campo) {
     }
 
     aplicarEstadoCampo(campo, valido);
-
     return valido;
 }
 
@@ -140,35 +135,8 @@ function validarUsuario(valor) {
 function contienePalabrasProhibidas(valor) {
     const usuarioNormalizado = normalizarTexto(valor);
 
-    const palabrasProhibidas = [
-        "pene",
-        "pico",
-        "pichula",
-        "tula",
-        "vagina",
-        "sexo",
-        "mierda",
-        "weon",
-        "hueon",
-        "ctm",
-        "puta",
-        "puto",
-        "maraco",
-        "maraca",
-        "zorra",
-        "perra",
-        "imbecil",
-        "idiota",
-        "estupido",
-        "estupida",
-        "retrasado",
-        "retrasada",
-        "mongolico",
-        "mongolica"
-    ];
-
-    return palabrasProhibidas.some(function (palabra) {
-        return usuarioNormalizado.includes(palabra);
+    return PALABRAS_PROHIBIDAS.some(function (palabra) {
+        return usuarioNormalizado.includes(normalizarTexto(palabra));
     });
 }
 

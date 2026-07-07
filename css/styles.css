@@ -1,19 +1,23 @@
 @font-face {
-    font-family: "Sailors";
-    src: url("../assets/fonts/Sailors.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Alaska";
-    src: url("../assets/fonts/Alaska.otf") format("opentype");
+    font-family: "HYWenHei";
+    src: url("../assets/fonts/HYWenHei-85W.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
-    font-family: "Sailors", Arial, Helvetica, sans-serif;
+    font-family: "HYWenHei", Arial, Helvetica, sans-serif;
     letter-spacing: 0;
 }
 
+html,
 body {
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     background-color: #fff7fa;
     color: #3b2730;
@@ -23,11 +27,6 @@ body {
     margin-bottom: 32px;
     background-color: #d96c9f !important;
     box-shadow: 0 4px 14px rgba(217, 108, 159, 0.22);
-}
-
-.navbar-brand,
-.titulo-pagina {
-    font-family: "Alaska", "Sailors", Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand {
@@ -46,6 +45,8 @@ body {
 }
 
 .container-principal {
+    flex: 1;
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 16px 40px;
@@ -267,7 +268,7 @@ a:hover {
 }
 
 .contact-footer {
-    margin-top: 32px;
+    margin-top: auto;
     background-color: #d96c9f;
     box-shadow: 0 -4px 14px rgba(217, 108, 159, 0.18);
 }
@@ -275,15 +276,16 @@ a:hover {
 .contact-footer-content {
     display: flex;
     align-items: center;
-    min-height: 70px;
+    min-height: 72px;
     gap: 24px;
 }
 
 .contact-toggle {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 110px;
+    justify-content: space-between;
+    gap: 14px;
+    min-width: 120px;
     border: 0;
     background-color: transparent;
     color: #ffffff;
@@ -293,7 +295,7 @@ a:hover {
 
 .contact-arrow {
     display: inline-block;
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 1;
     transition: transform 0.2s ease;
 }
@@ -302,21 +304,23 @@ a:hover {
     transform: rotate(180deg);
 }
 
-#contactoFooter {
+.contact-collapse {
     flex: 1;
 }
 
 .contact-panel {
     display: grid;
-    grid-template-columns: 1.1fr 1.7fr 1fr 1fr;
+    grid-template-columns: 1.1fr 1.8fr 1fr 1fr;
     align-items: center;
-    gap: 22px;
+    gap: 24px;
     width: 100%;
+    padding: 10px 0;
     color: #fff3f8;
 }
 
 .contact-panel span {
     display: block;
+    min-width: 0;
     white-space: nowrap;
 }
 
@@ -325,6 +329,14 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        margin-bottom: 22px;
+    }
+
+    .container-principal {
+        padding: 0 12px 28px;
+    }
+
     .seccion-contenido {
         padding: 16px;
     }
@@ -347,26 +359,34 @@ a:hover {
         gap: 12px;
     }
 
+    .form-select {
+        max-width: 112px;
+    }
+
     .contact-footer-content {
-        align-items: flex-start;
+        align-items: stretch;
         flex-direction: column;
-        gap: 8px;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        gap: 4px;
+        min-height: 72px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     .contact-toggle {
-        min-width: auto;
+        width: 100%;
+        min-width: 0;
+        padding: 0;
     }
 
     .contact-panel {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 6px;
+        padding-top: 8px;
     }
 
     .contact-panel span {
         white-space: normal;
+        overflow-wrap: anywhere;
     }
 }

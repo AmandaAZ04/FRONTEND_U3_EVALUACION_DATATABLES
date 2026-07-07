@@ -1,5 +1,3 @@
-# FRONTEND_U3_EVALUACION_DATATABLES
-Evaluacion 3 de frontend
 # Evaluacion Unidad 3 - Desarrollo de Aplicaciones Web
 
 WebApp desarrollada con HTML, CSS, JavaScript, jQuery y jQuery DataTables.
@@ -15,6 +13,7 @@ La aplicacion permite visualizar usuarios obtenidos desde JSONPlaceholder median
 - `css/styles.css`: estilos personalizados.
 - `js/index.js`: carga de datos y configuracion de DataTables.
 - `js/formulario.js`: validaciones, limpieza y simulacion de envio del formulario.
+- `js/familyfriendly.js`: listado de palabras prohibidas para el nombre de usuario.
 
 ## Tecnologias usadas
 
@@ -28,14 +27,12 @@ La aplicacion permite visualizar usuarios obtenidos desde JSONPlaceholder median
 
 ## Validaciones del formulario
 
-- Nombre obligatorio.
-- Usuario obligatorio.
-- Fecha de ingreso obligatoria con formato `dd/mm/yyyy`.
-- Email obligatorio con formato valido.
-- Sitio web opcional con formato URL valido.
+- Nombre obligatorio y solo con letras.
+- Usuario obligatorio sin palabras ofensivas.
+- Fecha de ingreso obligatoria mediante calendario.
+- Email obligatorio con dominios permitidos.
+- Sitio web opcional con selector de protocolo `http://` o `https://`.
 
 ## Fuente de datos
-
-Los usuarios se obtienen desde:
 
 https://jsonplaceholder.typicode.com/users
