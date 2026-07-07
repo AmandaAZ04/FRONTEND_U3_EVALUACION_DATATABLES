@@ -32,8 +32,8 @@ function cargarTablaUsuarios() {
             zeroRecords: "No se encontraron resultados",
             loadingRecords: "Cargando usuarios...",
             paginate: {
-                first: "Primero",
-                last: "Ultimo",
+                first: "<<",
+                last: ">>",
                 next: "Siguiente",
                 previous: "Anterior"
             }
